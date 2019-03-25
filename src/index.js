@@ -1,17 +1,12 @@
 import _ from 'lodash'
-import './style.css'
-import Dog from './dog.jpg'
-import Data from './data.xml'
+import printMe from './print.js'
 function component() {
   let element = document.createElement('div')
+  let btn = document.createElement('button')
   element.innerHTML = _.join(['hello', 'webpack'], ' ')
-  element.classList.add('hello');
-  // 添加图片到 div
-  let myDog = new Image()
-  myDog.src = Dog;
-  element.appendChild(myDog)
-  
-  console.log(Data)
+  btn.innerHTML = 'Click me and check the console!'
+  btn.onclick = printMe
+  element.appendChild(btn)
   return element
 }
 document.body.appendChild(component())
