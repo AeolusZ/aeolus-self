@@ -1,12 +1,10 @@
-import _ from 'lodash'
-import printMe from './print.js'
+import { cube } from './math'
 function component() {
-  let element = document.createElement('div')
-  let btn = document.createElement('button')
-  element.innerHTML = _.join(['hello', 'webpack'], ' ')
-  btn.innerHTML = 'Click me and check the console!'
-  btn.onclick = printMe
-  element.appendChild(btn)
+  let element = document.createElement('pre')
+  element.innerHTML = [
+    'Hello Webpack',
+    '5 cubes is equal to' + cube(5)
+  ].join('\n\n')
   return element
 }
 // 当 print.js 改变导致页面重新渲染时，重新获取渲染的元素
