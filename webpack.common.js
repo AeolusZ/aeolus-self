@@ -9,6 +9,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
@@ -19,15 +20,15 @@ module.exports = {
   ],
   optimization: {
     splitChunks: {
+      chunks: 'async',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: false,
       cacheGroups: {
-        chunks: 'async',
-        minSize: '30000',
-        maxSize: '0',
-        minChunks: '1',
-        maxAsyncRequests: '5',
-        maxInitialRequests: '3',
-        automaticNameDelimiter: '~',
-        name: false,
         vendors: {
           chunks: 'initial',
           maxInitialRequests: 5,
