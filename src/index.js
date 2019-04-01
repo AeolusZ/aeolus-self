@@ -1,15 +1,21 @@
-import { cube } from './math'
 if (process.env.NODE_ENV !== 'production') {
   console.log('Looks like we are in development model!')
 } else {
   console.log('Looks like we are in production model!')
 }
-function component() {
-  let element = document.createElement('pre')
-  element.innerHTML = [
-    'Hello Webpack',
-    '5 cubes is equal to' + cube(5)
-  ].join('\n\n')
+// function component() {
+//   return import(/* webpackChunkName: "lodash" */ 'lodash').then(_ => {
+//     var element = document.createElement('div')
+//     element.innerHTML = _.join(['hello', 'webpack'], '')
+//     return element
+//   }).catch(err => 'An error occurred while loading the component')
+// }
+async function component() {
+  var element = document.createElement('div')
+  const _ = await import(/* webpackChunkName: "lodash" */ 'lodash')
+  element.innerHTML = _.join(['hello', 'webpack'], ' ')
   return element
 }
-document.body.appendChild(component())
+component().then(component => {
+  document.body.appendChild(component)
+})
