@@ -1,3 +1,6 @@
+import {square} from './math'
+
+console.log(square)
 if (process.env.NODE_ENV !== 'production') {
   console.log('Looks like we are in development model!')
 } else {

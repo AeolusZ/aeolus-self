@@ -5,11 +5,14 @@ const webpack = require('webpack')
 module.exports = {
   entry: {
     app: './src/index.js',
-    another: './src/another-module.js'
+    another: './src/another-module.js',
+    // common: [
+    //   'lodash'
+    // ]
   },
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
@@ -20,27 +23,21 @@ module.exports = {
   ],
   optimization: {
     splitChunks: {
-      chunks: 'async',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: false,
       cacheGroups: {
-        vendors: {
+        common: {
+          name: 'common',
           chunks: 'initial',
-          maxInitialRequests: 5,
-          minSize: 0,
-          name: 'common'
+          priority: 2,
+          minSize: 0,       
         },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      }
+       vendor: {
+         test: /[\\/]node_modules[\\/]/,
+         name: 'vendor',
+         chunks: 'initial',
+         priority: 10,
+         minSize: 0
+       }
+      },
     }
   }
 }
