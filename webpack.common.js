@@ -3,17 +3,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 module.exports = {
-  entry: {
-    app: './src/index.js',
-    another: './src/another-module.js',
-    // common: [
-    //   'lodash'
-    // ]
-  },
+  entry: './src/index.js',
   output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'webpack-numbers.js',
+    path: path.resolve(__dirname, 'dist'),
+    library: 'webpackNumbers',
+    libraryTarget: 'umd'
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -21,23 +16,12 @@ module.exports = {
       title: '输出文档'
     }),
   ],
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        common: {
-          name: 'common',
-          chunks: 'initial',
-          priority: 2,
-          minSize: 0,       
-        },
-       vendor: {
-         test: /[\\/]node_modules[\\/]/,
-         name: 'vendor',
-         chunks: 'initial',
-         priority: 10,
-         minSize: 0
-       }
-      },
+  externals: {
+    lodash: {
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: 'lodash',
+      root: '_'
     }
   }
 }

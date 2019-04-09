@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "build": "webpack --congig webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "server": "node server.js",
     "start": "webpack-dev-server --open --config webpack.dev.js"
   },
@@ -21,6 +21,7 @@
     "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
+    "aeolus-package": "^1.0.0",
     "clean-webpack-plugin": "^2.0.1",
     "css-loader": "^2.1.1",
     "csv-loader": "^3.0.2",

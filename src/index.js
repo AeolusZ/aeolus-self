@@ -1,22 +1,15 @@
-import {square} from './math'
+import _ from 'lodash'
+import numRef from './ref.json'
+import aeolus from 'aeolus-package'
 
-console.log(square)
-if (process.env.NODE_ENV !== 'production') {
-  console.log('Looks like we are in development model!')
-} else {
-  console.log('Looks like we are in production model!')
+console.log(aeolus.showMsg)
+export function numToWorld(num) {
+  return _.reduce(numRef, (accum, ref) => {
+    return ref.num === num ? ref.word : accum
+  }, '')
 }
-function component() {
-  var element = document.createElement('div')
-  var button = document.createElement('button')
-  var br = document.createElement('br')
-  button.innerHTML = 'Click me and look at the console'
-  element.appendChild(br)
-  element.appendChild(button)
-  button.onclick = e => import(/*webpackChunkName: "print"*/'./print').then(module => {
-    var print = module.default
-    print()
-  })
-  return element
+export function wordToNum(word) {
+  return _.reduce(numRef, (accum, ref) => {
+    return ref.word === word && word.toLowerCase() ? ref.num : accum
+  }, '')
 }
-document.body.appendChild(component())
