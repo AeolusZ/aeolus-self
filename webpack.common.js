@@ -16,6 +16,9 @@ module.exports = {
       title: '输出文档'
     }),
   ],
+  resolve: {
+    extensions: ['.','.js','.jsx','.styl']
+  },
   externals: {
     lodash: {
       commonjs: 'lodash',
