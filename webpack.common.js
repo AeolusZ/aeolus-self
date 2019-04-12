@@ -5,26 +5,17 @@ const webpack = require('webpack')
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'webpack-numbers.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'webpackNumbers',
-    libraryTarget: 'umd'
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: '输出文档'
     }),
+    new webpack.ProvidePlugin({
+      _: 'lodash',
+      join: ['lodash', 'join']
+    })
   ],
-  resolve: {
-    extensions: ['.','.js','.jsx','.styl']
-  },
-  externals: {
-    lodash: {
-      commonjs: 'lodash',
-      commonjs2: 'lodash',
-      amd: 'lodash',
-      root: '_'
-    }
-  }
 }
