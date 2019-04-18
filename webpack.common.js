@@ -3,7 +3,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    polyfill: './src/polyfill'
+  },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),

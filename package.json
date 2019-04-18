@@ -11,7 +11,7 @@
     "watch": "webpack --watch",
     "build": "webpack --config webpack.prod.js",
     "server": "node server.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js"
+    "start": "webpack --config webpack.dev.js"
   },
   "author": "Aeolus",
   "license": "ISC",
